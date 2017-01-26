@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:site" content="@wizgrav">
+    <meta name="twitter:title" content="ClubberToy&trade;">
+    <meta name="twitter:description" content="Visualize your music">
+    <meta name="twitter:player" content="https://wizgrav.github.io/clubber/index.html">
+    <meta name="twitter:player:width" content="600">
+    <meta name="twitter:player:height" content="370">
+
+    <meta charset="utf-8">        
+    <meta name="author" content="Yannis Gravezas <wizgrav@gmail.com>">
+    <meta name="description" content="Visualize your music">
+
+    <!-- Mobile Stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="ClubberToy&trade;">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon.png">
+
+    <!-- Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ClubberToy&trade;">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Windows 8 -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+    <meta name="theme-color" content="#000000">
+
+    <link rel="icon" type="image/png" href="./toy/favicon.png" />
+
+    <title>ClubberToy&trade;</title>
+    <link href='toy/main.css' rel='stylesheet' type='text/css'>  
+  </head>
+
+  <body>
+    <audio controls></audio>
+    
+    <script src="http://wizgrav.github.io/clubber/dist/clubber.min.js"></script>
+    <script src="dist/clubberize.js"></script>
+    <script>
+      var clubber = new Clubber();
+      clubber.listen(document.querySelector("audio"));
+      var c = Clubberize(clubber, "?tool=1&t0=0234&r0=8,32,32,128&s0=0.08,0.08,0.08,0.08&a0=0.33,0.1,1,0.1&t1=0234&r1=32,48,1,128&s1=0.08,0.08,0.08,0.09&a1=0.1,1,0.6,0.1&t2=0234&r2=48,64,32,128&s2=0.08,0.08,0.08,0.08&a2=0.1,1,0.66,0.1&t3=0234&r3=64,96,32,128&s3=0.08,0.09,0.08,0.08&a3=0,1,0.9,-0.1&red=smoothstep(0.1%2C%20max(iMusic%5B1%5D.y%2CiMusic%5B0%5D.y)%2C%20min(iMusic%5B1%5D.x%2CiMusic%5B0%5D.x))%20*%20max(iMusic%5B0%5D.w%2C%20iMusic%5B1%5D.w)&green=smoothstep(iMusic%5B1%5D.x%20*%20iMusic%5B2%5D.w%2C%200.6%20%2B%20max(iMusic%5B1%5D.x%2CiMusic%5B2%5D.x)%2Clength(iMusic%5B2%5D.yw))&blue=smoothstep(iMusic%5B2%5D.y%20*%20iMusic%5B1%5D.y%2C%200.6%2C%20iMusic%5B2%5D.z%20*%20iMusic%5B1%5D.w)%20*%201.33&alpha=smoothstep(iMusic%5B2%5D.y%20*%20iMusic%5B1%5D.y%2C%202.%20-%20max(iMusic%5B2%5D.w%2CiMusic%5B1%5D.w)%2Clength(iMusic%5B1%5D.yw))%20*%200.66&track=https%3A%2F%2Fsoundcloud.com%2Fyoussef-ali-6%2Fzorba-the-greek&shader=https%3A%2F%2Fwww.shadertoy.com%2Fview%2F4lKSzh");
+    </script>
+    
+  </body>
+</html>

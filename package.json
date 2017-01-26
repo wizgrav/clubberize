@@ -1,0 +1,36 @@
+{
+  "name": "clubberize",
+  "version": "1.0.0",
+  "description": "Converts clubber tool modulators for using in js projects.",
+  "main": "index.js",
+  "scripts": {
+    "dist": "webpack index.js dist/clubberize.js && uglifyjs dist/clubberize.js -o dist/clubberize.min.js --source-map dist/clubberize.min.js.map",
+    "postpublish": "npm run dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wizgrav/clubberize.git"
+  },
+  "keywords": [
+    "clubber",
+    "glsl",
+    "transpiler",
+    "rhythm",
+    "music",
+    "audio",
+    "reactive"
+  ],
+  "author": "Yannis Gravezas <wizgrav@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wizgrav/clubberize/issues"
+  },
+  "homepage": "https://github.com/wizgrav/clubberize",
+  "dependencies": {
+    "glsl-transpiler": "^1.5.7"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.0",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
+  }
+}
