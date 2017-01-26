@@ -35,12 +35,13 @@ module.exports = window.Clubberize = function (clubber, config) {
   for(var i=0; i < 4; i++) {
     glsl.push("uniform vec4 iMusic_"+i+";");
     var ra = parseArray(getParameterByName("r"+i, config));
-    bands.push(clubber.band({
+    var c = {
       from: ra[0], to: ra[1], low: ra[2], high: ra[3],
-      template: parseArray(getParameterByName("t"+i, config)),
+      template: getParameterByName("t"+i, config),
       smooth: parseArray(getParameterByName("s"+i, config)),
       adapt: parseArray(getParameterByName("a"+i, config))
-    }));
+    };
+    bands.push(clubber.band(c));
   }
   
   ["red", "green", "blue", "alpha"].forEach(function (k) {
