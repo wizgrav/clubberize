@@ -17,7 +17,7 @@ For the unminified version for local development (with source maps), include thi
 
 ### Instructions ###
 
-Clubber tool can export its state using long urls that contain a full serialization of its config. Patches made with the tool provide up to 4 modulators using processing defined in the glsl fields. Clubberize utilizes the awesome [glsl-transpiler](https://github.com/stackgl/glsl-transpiler) to compile the rhythm detecting glsl to js. Calling that closure every render frame provides the 4 modulators in the form of a 4 element array. The modulator data can then be used in js apps, without the need for webgl.
+Clubber tool can export its state using long urls that contain a full serialization of its config. Patches made with the tool provide up to 4 modulators using processors defined in the glsl fields. Glsl makes sense for applying the vectorization technique described in the clubber readme but limits the reuse of the modulators themselves. Clubberize utilizes the awesome [glsl-transpiler](https://github.com/stackgl/glsl-transpiler) to trans compile the rhythm detecting glsl to pure js. A patch from the tool is wrapped in a closure that would be called every render frame to provide the current values of the 4 modulators for it's patch in the form of a 4 element array. The values can then be used in js apps, without the need for webgl.
 
 [You can check an example in codepen](http://codepen.io/wizgrav/pen/PWKNmg)
 
