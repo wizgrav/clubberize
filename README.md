@@ -40,7 +40,7 @@ function render (time) {
   // Time is passed as seconds to simulate shadertoy's iGlobalTime uniform, in case it is used by modulators.
   var data = mods(time/1000);
 
-  // All 4 modulators will be contained in the data 4 element array.
+  // The values from the 4 modulators will be contained in the data array.
   console.log(data);
 }
 
