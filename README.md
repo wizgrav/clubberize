@@ -1,7 +1,7 @@
 clubberize
 ========
 
-A helper lib complementing [Clubber Tool](http://wizgrav.github.io/clubber/tool) to enable easy use of [Clubber](http://github.com/wizgrav/clubber/) in js apps, webgl or other.
+A helper lib complementing [Clubber Tool](http://wizgrav.github.io/clubber/tool) to enable easy use of [Clubber](http://github.com/wizgrav/clubber/) in js apps, webgl or other. Think of it like a set of vibrating crystals that you can slot in and effortlessly animate your graphics to the tune of music.
 
 ### Usage ###
 
@@ -19,7 +19,7 @@ For the unminified version for local development (with source maps), include thi
 
 Clubber tool can export its state using long urls that contain a full serialization of its config. Patches made with the tool provide up to 4 modulators using processors defined in the glsl fields. Glsl makes sense for applying the vectorization technique described in the clubber readme but limits the reuse of the modulators themselves. Clubberize utilizes the awesome [glsl-transpiler](https://github.com/stackgl/glsl-transpiler) to trans compile the rhythm detecting glsl to pure js. A patch from the tool is wrapped in a closure that should be called every render frame to provide the current values of the 4 modulators for the patch in the form of a 4 element array of floats. These values can then be used in js apps, without the need for webgl.
 
-[You can check an example in codepen](http://codepen.io/wizgrav/pen/PWKNmg)
+[You can check an example in codepen](http://codepen.io/wizgrav/pen/PWKNmg), [Another example](http://wizgrav.github.io/rene), [And another](http://wizgrav.github.io/copernicus) 
 
 ```javascript
 
