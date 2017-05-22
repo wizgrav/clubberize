@@ -1,7 +1,7 @@
 {
   "name": "clubberize",
-  "version": "1.0.0",
-  "description": "Converts clubber tool modulators for using in js projects.",
+  "version": "1.2.0",
+  "description": "Converts clubber tool glsl modulators into javascript closures.",
   "main": "index.js",
   "scripts": {
     "dist": "webpack index.js dist/clubberize.js && uglifyjs dist/clubberize.js -o dist/clubberize.min.js --source-map dist/clubberize.min.js.map",
