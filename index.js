@@ -26,7 +26,7 @@ function parseArray(s) {
 
 module.exports = window.Clubberize = function (clubber, conf, silent) {
   
-  var fn, bands;
+  var fn, bands = [];
   var uniforms = {
     iMusic_0: new Float32Array(4),
     iMusic_1: new Float32Array(4),
@@ -80,35 +80,38 @@ module.exports = window.Clubberize = function (clubber, conf, silent) {
     fn = new Function("uniforms", src);
   }
 
-  var makeClosure = function (obj) {
-    var obj = obj || { lastTime: null, data:  [0, 0, 0, 0] };
+  var makeClosure = function (obj, ff) {
+    var obj = obj || { time: null, data:  [0, 0, 0, 0] };
+    bands.forEach(function (b,i) { 
+      var k = "iMusic_"+i;
+      obj[k] = uniforms[k] 
+    });
     return function (arg1, arg2) {
-        if (typeof arg1 === "string" && !ff) {
+        if (typeof arg1 === "string") {
             var src = transpile([
                 head,
                 "uniform float time;",
-                "uniform float data;",
+                "uniform vec4 data;",
                 (arg2 ? arg2 : "float") + " f(){",
-                " return " + arg1 + ";",
+                " return " + arg1.replace(/iMusic\[([0-3])\]/g, "iMusic_\$1") + ";",
                 "}"
             ].join("\n"));
             src += "\nreturn f();";
             if (!silent) console.log(src);
   
-            obj.ff = new Function("uniforms", src);
-            return makeClosure(obj);
+            return makeClosure(obj, new Function("uniforms", src));
         }
+        
         var time = arg1;
-        uniforms.iGlobalTime = uniforms.time =  time;
         
         if (fn && obj.lastTime !== time) {
+          obj.time = obj.iGlobalTime = uniforms.iGlobalTime = time / 1000;
           bands.forEach(function (b,i) { b(uniforms["iMusic_"+i]); });
           obj.data = fn(uniforms);
           obj.lastTime = time;
         }
 
-        uniforms.data = obj.data;
-        return obj.ff ? obj.ff(uniforms) : obj.data;
+        return ff ? ff(obj) : obj.data;
     } 
   }
   

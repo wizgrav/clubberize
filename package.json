@@ -1,7 +1,7 @@
 {
   "name": "clubberize",
   "version": "1.2.0",
-  "description": "Converts clubber tool glsl modulators into javascript closures.",
+  "description": "Converts clubber tool modulators from glsl to js.",
   "main": "index.js",
   "scripts": {
     "dist": "webpack index.js dist/clubberize.js && uglifyjs dist/clubberize.js -o dist/clubberize.min.js --source-map dist/clubberize.min.js.map",
@@ -30,6 +30,7 @@
     "glsl-transpiler": "^1.5.7"
   },
   "devDependencies": {
+    "clubber": "^1.6.1",
     "webpack": "^1.13.0",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
   }
