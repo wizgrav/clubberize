@@ -43,14 +43,23 @@
   </head>
 
   <body>
-    <audio controls></audio>
-    
+    <audio crossOrigin="anonymous"  src="https://wizgrav.github.io/clubberize/dist/aegir.mp3" controls></audio>
+    <div id="info"></div>
     <script src="http://wizgrav.github.io/clubber/dist/clubber.min.js"></script>
     <script src="dist/clubberize.js"></script>
     <script>
       var clubber = new Clubber();
       clubber.listen(document.querySelector("audio"));
       var c = Clubberize(clubber, "?tool=1&t0=0234&r0=8,32,32,128&s0=0.08,0.08,0.08,0.08&a0=0.33,0.1,1,0.1&t1=0234&r1=32,48,1,128&s1=0.08,0.08,0.08,0.09&a1=0.1,1,0.6,0.1&t2=0234&r2=48,64,32,128&s2=0.08,0.08,0.08,0.08&a2=0.1,1,0.66,0.1&t3=0234&r3=64,96,32,128&s3=0.08,0.09,0.08,0.08&a3=0,1,0.9,-0.1&red=smoothstep(0.1%2C%20max(iMusic%5B1%5D.y%2CiMusic%5B0%5D.y)%2C%20min(iMusic%5B1%5D.x%2CiMusic%5B0%5D.x))%20*%20max(iMusic%5B0%5D.w%2C%20iMusic%5B1%5D.w)&green=smoothstep(iMusic%5B1%5D.x%20*%20iMusic%5B2%5D.w%2C%200.6%20%2B%20max(iMusic%5B1%5D.x%2CiMusic%5B2%5D.x)%2Clength(iMusic%5B2%5D.yw))&blue=smoothstep(iMusic%5B2%5D.y%20*%20iMusic%5B1%5D.y%2C%200.6%2C%20iMusic%5B2%5D.z%20*%20iMusic%5B1%5D.w)%20*%201.33&alpha=smoothstep(iMusic%5B2%5D.y%20*%20iMusic%5B1%5D.y%2C%202.%20-%20max(iMusic%5B2%5D.w%2CiMusic%5B1%5D.w)%2Clength(iMusic%5B1%5D.yw))%20*%200.66&track=https%3A%2F%2Fsoundcloud.com%2Fyoussef-ali-6%2Fzorba-the-greek&shader=https%3A%2F%2Fwww.shadertoy.com%2Fview%2F4lKSzh");
+
+	var f = c("data.xy", "vec2");
+	function render (time) {
+		window.requestAnimationFrame(render);
+		clubber.update(time);
+		console.log(f(time))
+	}
+
+	render(0);
     </script>
     
   </body>
