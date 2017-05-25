@@ -39,8 +39,8 @@ function render (time) {
   // Clubber update is separate so we can have one parent and multiple modulator packs
   clubber.update();
 
-  // Time is passed as seconds to simulate shadertoy's iGlobalTime uniform, in case it is used by modulators.
-  var data = mods(time/1000);
+  // Time is passed as msec and internally converts to seconds for shadertoy's iGlobalTime uniform.
+  var data = mods(time);
 
   // The values from the 4 modulators will be contained in the data array.
   console.log(data);
@@ -71,10 +71,10 @@ function render (time) {
   clubber.update();
 
   // No need to call the original as the child closure will automatically update the modulators. 
-  // var data = mods(time/1000);
+  // var data = mods(time);
 
-  var float1 = filtered1(time/1000);
-  var array2 = filtered2(time/1000);
+  var float1 = filtered1(time);
+  var array2 = filtered2(time);
 
   console.log(float1, array2);
 }
