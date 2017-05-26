@@ -80,7 +80,7 @@ module.exports = window.Clubberize = function (clubber, conf, silent) {
     fn = new Function("uniforms", src);
   }
 
-  var makeClosure = function (obj, ff) {
+  var makeClosure = function (obj, cobj) {
     var obj = obj || { time: null, data:  [0, 0, 0, 0] };
     bands.forEach(function (b,i) { 
       var k = "iMusic_"+i;
@@ -88,18 +88,29 @@ module.exports = window.Clubberize = function (clubber, conf, silent) {
     });
     return function (arg1, arg2) {
         if (typeof arg1 === "string") {
+            var tp = arg2 ? arg2 : "float";
             var src = transpile([
                 head,
                 "uniform float time;",
                 "uniform vec4 data;",
-                (arg2 ? arg2 : "float") + " f(){",
+                "uniform " + tp + " prev;",
+                tp + " f(){",
                 " return " + arg1.replace(/iMusic\[([0-3])\]/g, "iMusic_\$1") + ";",
                 "}"
             ].join("\n"));
             src += "\nreturn f();";
             if (!silent) console.log(src);
-  
-            return makeClosure(obj, new Function("uniforms", src));
+    
+            var defaults = {
+              "float": 0,
+              "vec2": [0, 0],
+              "vec3": [0, 0, 0],
+              "vec4": [0, 0, 0, 0],
+              "mat3": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              "mat4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            };
+    
+            return makeClosure(obj, { data: defaults[tp], f: new Function("uniforms", src) });
         }
         
         var time = arg1;
@@ -110,8 +121,13 @@ module.exports = window.Clubberize = function (clubber, conf, silent) {
           obj.data = fn(uniforms);
           obj.lastTime = time;
         }
-
-        return ff ? ff(obj) : obj.data;
+        if (cobj) {
+          obj.prev = cobj.data;
+          cobj.data = cobj.f(obj);
+          return cobj.data;
+        } else {
+          return obj.data;
+        }
     } 
   }
   

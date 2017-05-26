@@ -1,6 +1,6 @@
 {
   "name": "clubberize",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Converts clubber tool modulators from glsl to js.",
   "main": "index.js",
   "scripts": {
